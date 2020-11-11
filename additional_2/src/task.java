@@ -102,28 +102,60 @@ public class task {
             incom = in.nextLine();
         }
         System.out.println(x + " " + y);
-        */
+
         //Дана строка, состоящая из строчных латинских букв и пробелов.
         //Проверьте, является ли она палиндромом без учета пробелов.
         char[] arr = in.nextLine().toCharArray();
         boolean result = true;
-        int sup1 = 0, sup2 = 0;
-        for (int i = 0; i < arr.length / 2; i++) {
-            if (arr[i - sup1] == ' ' && arr[arr.length - 1 - i + sup2] == ' ') {
+        int len = arr.length;
+        for (int i = 0; i < len / 2; i++) {
+            if (arr[i] == ' ' && arr[len - 1 - i] == ' ') {
 
             }
-            else if (arr[i - sup1] == ' ') {
-                sup2++;
+            else if (arr[i] == ' ') {
+                len++;
             }
-            else if (arr[arr.length - 1 - i + sup2] == ' ') {
-                sup1++;
+            else if (arr[len - 1 - i] == ' ') {
+                i--;
+                len--;
             }
-            else if (arr[i - sup1] != arr[arr.length - 1 - i + sup2]) {
+            else if (arr[i] != arr[len - 1 - i]) {
                 result = false;
                 break;
             }
         }
         System.out.println(result ? "yes" : "no");
+
+        //Юлий Цезарь использовал свой способ шифрования текста.
+        //Каждая буква заменялась на следующую по алфавиту через K позиций по кругу.
+        //Необходимо по заданной шифровке определить исходный текст.
+        char[] arr = in.nextLine().toCharArray();
+        int key = in.nextInt();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] -= key;
+            if (arr[i] < 'A') {
+                arr[i] += 26;
+            }
+        }
+        System.out.println(arr);
+        */
+        //Дана строка, Вам требуется преобразовать все идущие подряд пробелы в один.
+        char[] arr = in.nextLine().toCharArray();
+        boolean flag = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == ' ') {
+                if (flag) {
+                    continue;
+                }
+                else {
+                    flag = true;
+                }
+            }
+            else {
+                flag = false;
+            }
+            System.out.print(arr[i]);
+        }
 
         in.close();
     }
